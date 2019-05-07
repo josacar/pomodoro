@@ -1,7 +1,7 @@
 LOGFILE=make.log
 
 all: timer
-    
+
 timer: info
 	@echo "Building Timer.app..."
 	@xcodebuild -configuration Release -scheme Timer -project Timer.xcodeproj >> $(LOGFILE)
@@ -10,7 +10,7 @@ timer: info
 
 no-sig: info
 	@echo "Removing signature information..."
-	@find . -name "project.pbxproj" -exec sed -i '' "s/.*CODE_SIGN_IDENTITY.*//g" {} \; 
+	@find . -name "project.pbxproj" -exec sed -i '' "s/.*CODE_SIGN_IDENTITY.*//g" {} \;
 
 info:
 	@echo "Logging output to file '$(LOGFILE)'"

@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    macos:
+      xcode: "10.2.1"
+    steps:
+      - checkout
+      - run:
+          name: Build Application
+          command: |
+            find . -name "project.pbxproj" -exec sed -i '' "s/.*CODE_SIGN_IDENTITY.*//g" {} \;
+            xcodebuild -configuration Release -scheme Timer -project Timer.xcodeproj
+            zip -r timer.zip /Users/distiller/Library/Developer/Xcode/DerivedData/Timer-ghsjfcodzzxzwodckblxwtazdukd/Build/Products/Release/Timer.app
+      - store_artifacts:
+          path: timer.zip
+destination: pomodoro
